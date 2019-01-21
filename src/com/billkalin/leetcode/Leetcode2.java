@@ -6,10 +6,12 @@ public class Leetcode2 {
 
 	}
 
-	 public class ListNode {
-	      int val;
-	      ListNode next;
-	      ListNode(int x) { val = x; }
+	 public static class ListNode {
+		 public int val;
+	      public ListNode next;
+	      public ListNode(int x) { 
+	    	  val = x; 
+	      }
 	  }
 	
 	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
