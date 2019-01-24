@@ -1,5 +1,10 @@
 package com.billkalin.geektime;
 
+/**
+ * 字符串匹配算法
+ * @author Administrator
+ *
+ */
 public class StringMatch {
 
 	public static void main(String[] args) {

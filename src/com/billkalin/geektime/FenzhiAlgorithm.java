@@ -1,5 +1,10 @@
 package com.billkalin.geektime;
 
+/**
+ * 分治算法
+ * @author Administrator
+ *
+ */
 public class FenzhiAlgorithm {
 
 	public static void main(String[] args) {
