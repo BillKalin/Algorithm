@@ -4,7 +4,10 @@ public class DynamicProgramming {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		DynamicProgramming instance = new DynamicProgramming();
+		int[] coins = {1,3,5};
+		int money = 9;
+		instance.initCoin(coins, money);
 	}
 
 	/***
@@ -159,5 +162,79 @@ public class DynamicProgramming {
 				maxValues = ws[n-1][i];
 			}
 		}
+	}
+	
+	 /**
+	   * 求出杨晖三角的最短路径
+	   *
+	   * @param triangles
+	   */
+	void processTriangle(int[][] triangles) {
+		int[][] states = new int[triangles.length][triangles[triangles.length - 1].length];
+		int startPoint = triangles.length - 1;
+		int maxpoint = triangles[triangles.length - 1].length;
+		    
+		for (int i=0;i<=startPoint;i++) {
+			for (int j=0;j<maxpoint;j++) {
+				states[i][j] = -1;
+			}
+		}
+		
+		states[0][startPoint] = triangles[0][startPoint];
+		for (int i=1;i<=startPoint;i++) {
+			int currIndex = 0;
+			while(currIndex < maxpoint) {
+				if (states[i-1][currIndex] >= 0) {
+					int leftValue = states[i-1][currIndex]+triangles[i][currIndex - 1];
+					if (states[i][currIndex-1] == -1) {
+						states[i][currIndex-1] = leftValue;
+					} else if (states[i][currIndex-1] > leftValue) {
+						states[i][currIndex-1] = leftValue;
+					}
+					
+					int rightValue = states[i-1][currIndex]+triangles[i][currIndex + 1];
+					if (states[i][currIndex + 1] == -1) {
+						states[i][currIndex + 1] = rightValue;
+					}
+					currIndex ++;
+				}
+				currIndex ++;
+			}
+		}
+		
+		int minValue = -1;
+		for (int i=0;i<maxpoint;i++) {
+			if (minValue > states[startPoint][i] && states[startPoint][i] != -1) {
+				minValue = states[startPoint][i];
+			}
+		}
+		
+		int outValue = minValue;
+		for (int i=startPoint;i>=0;i--) {
+			int currIndex = 0;
+			while(currIndex < maxpoint) {
+				if (states[i][currIndex] == outValue) {
+					outValue = outValue - triangles[i][currIndex];
+				}
+				
+				currIndex ++;
+			}
+		}
+	}
+	
+	void initCoin(int[] coins, int money) {
+		int[][] cc = new int[coins.length][money+1];
+		for(int i=0;i<coins.length;i++) {
+			for (int j=1;j<money+1;j++) {
+				if (coins[i] <= j) {
+					int col = j - coins[i];
+					cc[i][j] = cc[i][col] + 1;
+				} else {
+					cc[i][j] = cc[i-1][j];
+				}
+			}
+		}
+		
+		int coin = cc[coins.length-1][money];
 	}
 }
