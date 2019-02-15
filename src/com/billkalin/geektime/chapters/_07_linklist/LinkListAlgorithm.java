@@ -27,9 +27,9 @@ public class LinkListAlgorithm {
 		LinkListAlgorithm lla = new LinkListAlgorithm();
 		lla.printNode(head);
 		
-//		Node<Integer> reverseHead = lla.reverseLinkList(head);
-//		System.out.print("翻转链表：");
-//		lla.printNode(reverseHead);
+		Node<Integer> reverseHead = lla.reverseLinkList(head);
+		System.out.print("翻转链表：");
+		lla.printNode(reverseHead);
 		
 //		node2.next = head;
 //		boolean isCycle = lla.checkCycle(head);
@@ -54,10 +54,10 @@ public class LinkListAlgorithm {
 //		Node<Integer> node = lla.getMiddleNode(head);
 //		System.out.println("中间节点：" + node.data);
 		
-		int k = 3;
-		System.out.print("删除倒数第:" + k + "个结点：");
-		head = lla.removeKNode(head, k);
-		lla.printNode(head);
+//		int k = 3;
+//		System.out.print("删除倒数第:" + k + "个结点：");
+//		head = lla.removeKNode(head, k);
+//		lla.printNode(head);
 	}
 	
 	//单链表翻转
@@ -73,36 +73,34 @@ public class LinkListAlgorithm {
 //		return ret;
 		
 		//不带头结点的翻转
-		Node<T> curr = head;
-		Node<T> pre = null;
-		Node<T> next = null;
-		
-		while(curr != null) {
-			next = curr.next;
-			curr.next = pre;
-			pre = curr;
-			curr = next;
-		}
-		return pre;
-		
-		//带头结点的翻转
-//		Node<T> fakeHead = new Node<T>();
-//		fakeHead.next = head;
-//		
-//		Node<T> curr = head.next;
-//
-//		Node<T> pre = head;
+//		Node<T> curr = head;
+//		Node<T> pre = null;
 //		Node<T> next = null;
 //		
 //		while(curr != null) {
 //			next = curr.next;
-//			curr.next = fakeHead.next;
-//			fakeHead.next = curr;
+//			curr.next = pre;
+//			pre = curr;
 //			curr = next;
 //		}
-//		pre.next = null;//最后一个结点断开，否则就成循环链表
-//		
-//		return fakeHead.next;
+//		return pre;
+		
+		//带头结点的翻转
+		Node<T> fakeHead = new Node<T>();
+		fakeHead.next = head;
+		
+		Node<T> curr = head.next;
+		head.next = null;
+		Node<T> next = null;
+		
+		while(curr != null) {
+			next = curr.next;
+			curr.next = fakeHead.next;
+			fakeHead.next = curr;
+			curr = next;
+		}
+		
+		return fakeHead.next;
 	}
 	
 	//链表中环的检测
