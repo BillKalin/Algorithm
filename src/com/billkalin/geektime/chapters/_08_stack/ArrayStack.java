@@ -2,6 +2,7 @@ package com.billkalin.geektime.chapters._08_stack;
 
 /**
  * 顺序栈  - 基于数组栈
+ * 支持动态扩容
  * @author
  *
  */
@@ -47,13 +48,17 @@ public class ArrayStack<T> implements IStack<T> {
 			return null;
 		T t = data[count - 1];
 		count --;
+		if (count == capacity/4 && capacity/2 !=0) {
+			resize(capacity/2);
+		}
 		return t;		
 	}
 	
 	@Override
 	public void push(T t) {
 		if (isFull()) {
-			return;
+//			return;
+			resize(count * 2);
 		}
 		data[count] = t;
 		count ++;
@@ -99,5 +104,14 @@ public class ArrayStack<T> implements IStack<T> {
 		// TODO Auto-generated method stub
 		data = (T[]) new Object[capacity];
 		count = 0;
+	}
+	
+	private void resize(int size) {
+		capacity = size;
+		T[] newData = (T[]) new Object[size];
+		for(int i=0;i<size;i++) {
+			newData[i] = data[i];
+		}
+		data = newData;
 	}
 }
