@@ -1,5 +1,7 @@
 package com.billkalin.geektime.chapters._11_sorts;
 
+import java.util.Arrays;
+
 /**
  * 
  * 基础排序算法：
@@ -12,6 +14,11 @@ public class Sorts {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		int[] array = {3,1,2,6,4,9,7,5,8};
+		System.out.println(Arrays.toString(array));
+		Sorts sorts = new Sorts();
+		sorts.shellSort(array);
+		System.out.println(Arrays.toString(array));
 
 	}
 
@@ -25,7 +32,7 @@ public class Sorts {
 		int size = array.length;
 		for(int i=0;i<size;i++) {
 			boolean flag = false;//是否有交换标志，如果没有交换，之后就不需要再比较了
-			for(int j=0;j<i-1;i++) {
+			for(int j=0;j<size - i-1;j++) {
 				if(array[j] > array[j+1]) {
 					int temp = array[j];
 					array[j] = array[j+1];
@@ -77,6 +84,32 @@ public class Sorts {
 			int temp = array[i];
 			array[i] = array[min];
 			array[min] = temp;
+		}
+	}
+	
+	/**
+	 * 希尔排序
+	 * @param array
+	 */
+	private void shellSort(int[] array) {
+		if(null == array || array.length <= 1)
+			return;
+		int gap = 1;
+		while(gap <= array.length/3) {
+			gap = gap * 3 + 1;
+		}
+		
+		while(gap >= 1) {
+			for(int i= gap; i<array.length;i++) {
+				int temp = array[i];
+				int j = i - gap;
+				while(j>=0 && array[j] >= temp) {
+					array[j+gap] = array[j];
+					j = j - gap;
+				}
+				array[j+gap] = temp;
+			}
+			gap = (gap - 1)/3;
 		}
 	}
 }

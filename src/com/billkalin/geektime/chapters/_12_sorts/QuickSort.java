@@ -13,11 +13,33 @@ public class QuickSort {
 		// TODO Auto-generated method stub
 		int[] array = { 3, 2, 1, 8, 5, 4, 2 };
 		System.out.println(Arrays.toString(array));
+		
 		QuickSort sort = new QuickSort();
+		int i = sort.topKNumber(array, 7);
+		System.out.println("i = " + i);
 		sort.quickSort(array, 0, array.length - 1);
 		System.out.println(Arrays.toString(array));
 	}
 
+	private int topKNumber(int[] array, int k) {
+		if(null == array || array.length == 0 || k > array.length)
+			return -1;
+		int start = 0;
+		int end = array.length-1;
+		int pation = 0;
+		while(start <= end) {
+			pation = patiation(array, start, end);
+			if(pation + 1 == k) {
+				return array[pation];
+			} else if (pation + 1 > k) {
+				end = pation-1;
+			} else {
+				start = pation+1;
+			}
+		}
+		return -1;
+	}
+	
 	private void quickSort(int[] array, int start, int end) {
 		if (null == array || array.length <= 1)
 			return;
@@ -32,15 +54,15 @@ public class QuickSort {
 		int priot = array[end];
 		int i = start;
 		int j = end;
-		while (i <= j) {
+		while (true) {
 			while (i < j && array[i] < priot) {
 				i++;
 			}
 
-			while (i < j && array[j] >= priot) {
+			while (j>=0 && array[j] >= priot) {
 				j--;
 			}
-			if (i == j) {
+			if (i >= j) {
 				break;
 			}
 			int temp = array[i];
