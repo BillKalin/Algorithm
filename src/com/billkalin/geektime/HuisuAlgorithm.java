@@ -9,7 +9,7 @@ public class HuisuAlgorithm {
 		HuisuAlgorithm instance = new HuisuAlgorithm();
 		instance.queues(0);
 		
-		instance.backpacking(new int[]{4,5,6}, 0, 0, 10);
+		instance.backpacking(new int[]{1,2,3,4, 10, 15}, 0, 0, 10);
 		
 		String string = "abc?bc";
 		String patternStr = "a*bc";
