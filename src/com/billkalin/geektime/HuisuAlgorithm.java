@@ -2,6 +2,11 @@ package com.billkalin.geektime;
 
 import java.util.Arrays;
 
+/**
+ * 回溯算法
+ * @author Administrator
+ *
+ */
 public class HuisuAlgorithm {
 
 	public static void main(String[] args) {
