@@ -11,6 +11,11 @@ public class Heap {
 		System.out.println(Arrays.toString(array));
 		heap.heapSort(array);
 		System.out.println(Arrays.toString(array));
+		
+		heap.topK(array, 9);
+		System.out.println(Arrays.toString(array));
+		heap.topK(array, 10);
+		System.out.println(Arrays.toString(array));
 	}
 
 	private static void swap(int[] array, int i, int j) {
@@ -27,6 +32,16 @@ public class Heap {
 		}
 	}
 
+	private void topK(int[] array, int num) {
+		if(array[0] < num) {
+			array[0] = num;
+		}
+		for (int i = array.length - 1; i > 0; i--) {
+			swap(array, 0, i);
+			heap(array, 0, i);
+		}
+	}
+	
 	private void buildHeap(int[] array, int n) {
 		for (int i = n / 2; i >= 0; i--) {
 			heap(array, i, n);
