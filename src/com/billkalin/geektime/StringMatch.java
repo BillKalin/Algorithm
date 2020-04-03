@@ -8,7 +8,7 @@ package com.billkalin.geektime;
 public class StringMatch {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
 		String mainStr = "abcacabdc";
 		String subStr = "cabdc";
 		char[] main = mainStr.toCharArray();
