@@ -4,8 +4,8 @@ public class KmpStringsMatch {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String main = "abcde";
-		String sub = "de";
+		String main = "abcdeabfabcdeabc";
+		String sub = "abcdeabc";
 
 		int isA = kmp(main.toCharArray(), main.length(), sub.toCharArray(), sub.length());
 		System.out.print("isA = " + isA);
