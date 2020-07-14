@@ -61,13 +61,7 @@ public class LeastCoinCount {
     private static int MoneyCoinCount2(int money, int[] coins) {
         int[] dp = new int[money + 1];
         for (int i = 1; i <= money; i++) {
-            dp[i] = 1000000000;//初始化
-        }
-        for (int i = 0; i < coins.length; i++) {
-            if (coins[i] > money) {
-                continue;
-            }
-            dp[coins[i]] = 1;//填充对应币值的金币数
+            dp[i] = money + 1;//初始化
         }
 
         dp[0] = 0;
