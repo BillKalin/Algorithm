@@ -4,10 +4,9 @@ public class LeastCoinCount {
 
     public static void main(String[] args) {
         int money = 9;
-//        MoneyCoinCount(0, 0, money);
-        mCurrMinCount = MoneyCoinCount2(money);
-
         int[] coins = new int[]{2, 3, 5};
+        MoneyCoinCount(0, 0, coins, money);
+//        mCurrMinCount = MoneyCoinCount2(money);
         int count = MoneyCoinCount2(money, coins);
 
         System.out.println("main: money = " + money + " & count = " + mCurrMinCount + " & count = " + count);
@@ -17,7 +16,7 @@ public class LeastCoinCount {
     private static boolean[][] mem = new boolean[9 + 1][9 + 1];
 
     //回溯法
-    private static void MoneyCoinCount(int cMoney, int cCount, int money) {
+    private static void MoneyCoinCount(int cMoney, int cCount, int[] coins, int money) {
         if (cMoney == money) {
             if (mCurrMinCount > cCount) {
                 mCurrMinCount = cCount;
@@ -26,20 +25,10 @@ public class LeastCoinCount {
             return;
         }
 
-        if (mem[cMoney][cCount]) {
-            System.out.println("MoneyCoinCount: money = " + money + " & count = " + cCount + " & cache");
-            return;
-        }
-        mem[cMoney][cCount] = true;
-
-        if (cMoney + 1 <= money) {
-            MoneyCoinCount(cMoney + 1, cCount + 1, money);
-        }
-        if (cMoney + 3 <= money) {
-            MoneyCoinCount(cMoney + 3, cCount + 1, money);
-        }
-        if (cMoney + 5 <= money) {
-            MoneyCoinCount(cMoney + 5, cCount + 1, money);
+        for (int i : coins) {
+            if (i + cMoney <= money) {
+                MoneyCoinCount(cMoney + i, cCount + 1, coins, money);
+            }
         }
     }
 
@@ -61,16 +50,16 @@ public class LeastCoinCount {
     private static int MoneyCoinCount2(int money, int[] coins) {
         int[] dp = new int[money + 1];
         for (int i = 1; i <= money; i++) {
-            dp[i] = money + 1;//初始化
+            dp[i] = money;//初始化
         }
 
         dp[0] = 0;
-        for (int i = 0; i < coins.length; i++) {
-            if (coins[i] > money) {
+        for (int coin : coins) {
+            if (coin > money) {
                 continue;
             }
-            for (int j = coins[i]; j <= money; j++) {
-                dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+            for (int j = coin; j <= money; j++) {
+                dp[j] = Math.min(dp[j], dp[j - coin] + 1);
             }
         }
 
