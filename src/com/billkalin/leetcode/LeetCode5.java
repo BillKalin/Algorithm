@@ -38,4 +38,31 @@ public class LeetCode5 {
         
         return j - i - 1;
     }
+
+    public String longestPalindrome2(String s) {
+        if (s.length() <= 1)
+            return s;
+        int len = s.length();
+        boolean[][] dp = new boolean[len][len];
+        int start = 0, end = 0, maxLength = 0;
+        for (int i = 0; i < len; i++) {
+            for (int j = i; j >= 0; j--) {
+                boolean startEqEnd = s.charAt(i) == s.charAt(j);
+                if (i == j) {
+                    dp[i][j] = true;
+                } else if (i - j == 1) {
+                    dp[i][j] = startEqEnd;
+                } else {
+                    dp[i][j] = dp[i - 1][j + 1] && startEqEnd;
+                }
+
+                if (dp[i][j] && i - j > maxLength) {
+                    maxLength = i - j;
+                    start = j;
+                    end = i;
+                }
+            }
+        }
+        return s.substring(start, end + 1);
+    }
 }
