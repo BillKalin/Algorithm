@@ -8,6 +8,7 @@ public class LeetCode41 {
     }
 
     public static int firstMissingPositive(int[] nums) {
+        //把对应的数字放到正确位置上，即i+1 = nums[i], 如果是负数或者大于n的数则跳过
         int i = 0;
         int n = nums.length;
         while (i < n) {
