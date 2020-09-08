@@ -5,6 +5,28 @@ public class LeetCode37 {
         if (board == null || board.length == 0)
             return;
         solve(board);
+        solveDfs(board, 0);
+    }
+
+    private boolean solveDfs(char[][] board, int index) {
+        if (index == 81) return true;//到达最后一个位置
+        int row = index / 9;//当前所处的行
+        int col = index % 9;//当前所处的列
+        //如果当前已经放好了，那就放下一个位置
+        if (board[row][col] != '.') return solveDfs(board, index + 1);
+        //每个位置从1-9，依次尝试放
+        for (char ch = '1'; ch <= '9'; ch++) {
+            //如果满足条件则尝试放
+            if (isValid(board, row, col, ch)) {
+                board[row][col] = ch;
+                //接着看下一个位置
+                if (solveDfs(board, index + 1))
+                    return true;
+                //这个位置没有放，就回退
+                board[row][col] = '.';
+            }
+        }
+        return false;
     }
 
     private boolean solve(char[][] board) {
