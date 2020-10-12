@@ -7,7 +7,7 @@ public class LeetCode654 {
         return constructMaximumBinaryTree(nums, 0, nums.length);
     }
 
-    //time: O(n2), space: O(1)
+    //time: O(N2), space: O(1)
     private LeetCode94.TreeNode constructMaximumBinaryTree(int[] nums, int left, int right) {
         if (left >= right)
             return null;
@@ -26,6 +26,7 @@ public class LeetCode654 {
         return node;
     }
 
+    //time: O(N), space: O(N)
     public LeetCode94.TreeNode constructMaximumBinaryTree2(int[] nums) {
         LinkedList<LeetCode94.TreeNode> linkedList = new LinkedList<>();
         for (int num : nums) {
