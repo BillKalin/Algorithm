@@ -11,6 +11,7 @@ public class LeetCode51 {
 		code.solveNQueens(4);
 	}
 
+	//https://leetcode.wang/leetCode-51-N-Queens.html
 	 public List<List<String>> solveNQueens(int n) {
 	        List<List<String>> retList = new ArrayList<>(n);
 	        char[][] board = new char[n][n];
