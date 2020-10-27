@@ -16,7 +16,7 @@ public class LeetCode68 {
                 currIndex++;
             }
 
-            int diff = currIndex - index - 1;//容下的单词数量为0，或者最后一行
+            int diff = currIndex - index - 1;//容下的单词数量为1，或者最后一行
             if (diff == 0 || currIndex == words.length) {
                 for (int i = index; i < currIndex; i++) {//直接排布单词+空格
                     stringBuilder.append(words[i]).append(' ');
