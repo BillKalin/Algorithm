@@ -16,7 +16,7 @@ public class LeetCode86 {
             }
             head = head.next;
         }
-        after.next = null;
+        after.next = null;//这里需要断开，否则会出现环
         before.next = afterHeader.next;
         return beforeHead.next;
     }
