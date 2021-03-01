@@ -8,7 +8,7 @@ public class LeetCode90 {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> list = new ArrayList<>();
-        subsetsWithDup(nums, 0, new ArrayList<>(), list);
+        subsetsWithDup(nums, 0, new ArrayList<Integer>(), list);
         return list;
     }
 

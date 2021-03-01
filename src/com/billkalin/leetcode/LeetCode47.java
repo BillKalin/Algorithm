@@ -8,7 +8,7 @@ public class LeetCode47 {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
         Arrays.sort(nums);
-        permuteUnique(nums, new ArrayList<>(), list, new boolean[nums.length]);
+        permuteUnique(nums, new ArrayList<Integer>(), list, new boolean[nums.length]);
         return list;
     }
 

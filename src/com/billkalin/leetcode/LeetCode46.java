@@ -8,7 +8,7 @@ public class LeetCode46 {
         List<List<Integer>> ret = new ArrayList<>();
         if (nums == null || nums.length == 0)
             return ret;
-        permute(nums, new ArrayList<>(), ret);
+        permute(nums, new ArrayList<Integer>(), ret);
         return ret;
     }
 
